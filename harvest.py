@@ -113,7 +113,7 @@ class Melon(object):
 def make_melons():
     """Returns a list of Melon objects."""
 
-    #melon_types
+    #melon_types we cheated, this should be the param for this function whoops
     melon_lst = []
 
     #hardcode
