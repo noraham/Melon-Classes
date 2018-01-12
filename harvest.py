@@ -57,8 +57,8 @@ def make_melon_types():
 
     return all_melon_types  # this returns list of objects, is this the only way to pass these melons to the other functs?
 
+# mel_lst = make_melon_types()
 
-mel_lst = make_melon_types()
 def print_pairing_info(melon_types):
     """Prints information about each melon type's pairings."""
 
@@ -67,8 +67,8 @@ def print_pairing_info(melon_types):
         for pair_item in melon.pairing:
             print "- {pair}".format(pair=pair_item)
 
+# print_pairing_info(mel_lst)
 
-print_pairing_info(mel_lst)
 def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
 
@@ -84,7 +84,8 @@ def make_melon_type_lookup(melon_types):
 
     return mel_dict
 
-make_melon_type_lookup(mel_lst)
+# make_melon_type_lookup(mel_lst)
+
 ############
 # Part 2   #
 ############
@@ -92,18 +93,65 @@ make_melon_type_lookup(mel_lst)
 class Melon(object):
     """A melon in a melon harvest."""
 
-    # Fill in the rest
-    # Needs __init__ and is_sellable methods
+    def __init__ (self, name, code, shape_rat, color_rat, field, harvester):
+        """Initialize a harvested melon"""
+        self.name = name
+        self.code = code
+        self.shape_rat = shape_rat
+        self.color_rat = color_rat
+        self.field = field
+        self.harvester = harvester
 
-def make_melons(melon_types):
+    def is_sellable(self, shape_rat, color_rat, field):
+        """check sellability"""
+
+        if self.shape_rat > 5 and self.color_rat > 5 and field != 3:
+            return True
+        else:
+            return False
+
+def make_melons():
     """Returns a list of Melon objects."""
 
-    # Fill in the rest
+    #melon_types
+    melon_lst = []
+
+    #hardcode
+    m1 = Melon('Melon 1', 'yw', 8, 7, 2, 'Sheila')
+    m2 = Melon('Melon 2', 'yw', 3, 4, 2, 'Sheila')
+    m3 = Melon('Melon 3', 'yw', 9, 8, 3, 'Sheila')
+    m4 = Melon('Melon 4', 'cas', 10, 6, 35, 'Sheila')
+    m5 = Melon('Melon 5', 'cren', 8, 9, 35, 'Michael')
+    m6 = Melon('Melon 6', 'cren', 8, 2, 35, 'Michael')
+    m7 = Melon('Melon 7', 'cren', 2, 3, 4, 'Michael')
+    m8 = Melon('Melon 8', 'musk', 6, 7, 4, 'Michael')
+    m9 = Melon('Melon 9', 'yw', 7, 10, 3, 'Sheila')
+
+
+    melon_lst.append(m1)
+    melon_lst.append(m2)
+    melon_lst.append(m3)
+    melon_lst.append(m4)
+    melon_lst.append(m5)
+    melon_lst.append(m6)
+    melon_lst.append(m7)
+    melon_lst.append(m8)
+    melon_lst.append(m9)
+
+
+    return melon_lst
+
+mel2_lst = make_melons()
 
 def get_sellability_report(melons):
     """Given a list of melon object, prints whether each one is sellable."""
 
-    # Fill in the rest
+    for melon in melons:
+        sellability = melon.is_sellable(melon.shape_rat, melon.color_rat, melon.field)
 
+        if sellability == True:
+            print "Congrats! {} harvested by {} from {} is sellable!".format(melon.name, melon.harvester, melon.field)
+        else:
+            print "RIP, {} harvested by {} from {} is NOT sellable!".format(melon.name, melon.harvester, melon.field)
 
-
+get_sellability_report(mel2_lst)
